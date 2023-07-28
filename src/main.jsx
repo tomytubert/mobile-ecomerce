@@ -1,7 +1,8 @@
-import { render } from "preact";
 import { App } from "./app.jsx";
 import "./styles/restart.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ExpiringDataProvider } from "./context/dataContext.jsx";
+
 import * as ReactDOM from "react-dom/client";
 
 const router = createBrowserRouter([
@@ -11,7 +12,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-
 ReactDOM.createRoot(document.getElementById("app")).render(
-  <RouterProvider router={router} />
+  <ExpiringDataProvider>
+    <RouterProvider router={router} />
+  </ExpiringDataProvider>
 );
