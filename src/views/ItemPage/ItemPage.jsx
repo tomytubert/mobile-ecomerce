@@ -2,6 +2,7 @@ import { useEffect, useState } from "preact/hooks";
 import { useParams } from "react-router-dom";
 import * as S from "./styles";
 import { useCartDispatch } from "../../context/cartContext";
+import Loading from "../../components/Loading/Loading";
 
 const ItemPage = () => {
   const { productId } = useParams();
@@ -65,7 +66,7 @@ const ItemPage = () => {
       });
   };
 
-  if (loading) return <p>loading...</p>;
+  if (loading) return <Loading />;
   return (
     <S.ItemPage>
       <section>

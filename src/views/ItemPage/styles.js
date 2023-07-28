@@ -1,5 +1,11 @@
 import styled from "styled-components";
 import variables from "../../styles/_variables";
+import { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
 
 export const ItemPage = styled.main`
   max-width: 1440px;
@@ -7,6 +13,7 @@ export const ItemPage = styled.main`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  animation: ${fadeIn} 2.5s;
   section:nth-child(2) {
     padding: 20px 50px;
     background-color: ${variables.colors.white};
@@ -15,11 +22,13 @@ export const ItemPage = styled.main`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
   }
   @media only screen and (min-width: 450px) and (max-width: 1024px) {
     section:nth-child(2) {
       flex-direction: row;
       gap: 10%;
+      box-shadow: none;
     }
   }
   @media only screen and (min-width: 1025px) {
@@ -37,7 +46,7 @@ export const ItemPage = styled.main`
 
 export const ImageContainer = styled.div`
   background-color: white;
-  padding: 50px;
+  padding: 100px 50px 75px 50px;
   img {
     width: 100%;
     max-height: 300px;
@@ -45,6 +54,7 @@ export const ImageContainer = styled.div`
   }
   @media only screen and (min-width: 1025px) {
     border-radius: 50px;
+    padding: 50px;
   }
 `;
 

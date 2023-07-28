@@ -7,8 +7,8 @@ export const CartContainer = styled.div`
     width: 15px;
     height: 15px;
     position: absolute;
-    bottom: -5px;
-    right: -5px;
+    bottom: 10px;
+    right: 10px;
     background: ${variables.colors.accent};
     font-size: 10px;
     display: flex;
