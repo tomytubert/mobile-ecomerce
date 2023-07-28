@@ -1,33 +1,26 @@
-import { useState } from 'preact/hooks'
-import preactLogo from './assets/preact.svg'
-import viteLogo from '/vite.svg'
-import './app.css'
+import { useEffect, useState } from "preact/hooks";
+import ListItems from "./components/List/List";
+import Header from "./components/Header/Header";
 
 export function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then(async (res) => await res.json())
+      .then((res) => {
+        setProducts(res.products);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
+  console.log("products :>> ", products[0]);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://preactjs.com" target="_blank">
-          <img src={preactLogo} class="logo preact" alt="Preact logo" />
-        </a>
-      </div>
-      <h1>Vite + Preact</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/app.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p class="read-the-docs">
-        Click on the Vite and Preact logos to learn more
-      </p>
+      <Header />
+      <ListItems products={products} />
     </>
-  )
+  );
 }
