@@ -8,7 +8,7 @@ export const Nav = styled.nav`
   width: 100%;
   z-index: 5;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-  div {
+ > div {
     padding: 10px 12px;
     display: flex;
     justify-content: space-between;
@@ -45,7 +45,7 @@ export const Nav = styled.nav`
     }
   }
   @media (min-width: 450px) {
-    div {
+    >div {
       padding: 20px 60px;
     }
   }
