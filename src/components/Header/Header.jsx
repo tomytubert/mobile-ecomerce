@@ -1,18 +1,15 @@
-import { Link, useLocation, useHref } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as S from "./styles";
-import Bag from "../Icons/Bag/Bag";
+import Cart from "../Cart/Cart";
 
 const Header = () => {
-  const location = useLocation();
-  const href = useHref();
-
   return (
     <S.Nav>
       <div>
         <Link to="/">
           <p>TT </p>
         </Link>
-        <Bag />
+        <Cart />
       </div>
     </S.Nav>
   );

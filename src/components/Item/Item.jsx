@@ -1,16 +1,19 @@
+import { Link } from "react-router-dom";
 import * as S from "./styles";
 
 const Item = ({ product }) => {
   return (
     <S.Item>
-      <img src={product.imgUrl} alt={product.model} />
-      <div>
+      <Link to={`/${product.id}`}>
+        <img src={product.imgUrl} alt={product.model} />
         <div>
-          <h2>{product.model}</h2>
-          <p>{product.brand}</p>
+          <div>
+            <h2>{product.model}</h2>
+            <p>{product.brand}</p>
+          </div>
+          <p>{product.price || 0} €</p>
         </div>
-        <p>{product.price || 0} €</p>
-      </div>
+      </Link>
     </S.Item>
   );
 };
