@@ -5,11 +5,14 @@ export const Item = styled.li`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background: ${variables.colors.white};
+  border-radius: 20px;
+  padding-bottom: 15px;
   img {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     height: 300px;
-    border-radius: 20px;
+    border-radius: 20px 20px 0 0;
   }
   div {
     display: flex;
@@ -27,11 +30,11 @@ export const Item = styled.li`
       font-size: 16px;
       font-family: ${variables.font.text};
       color: ${variables.colors.grey_shadow};
+      white-space: nowrap;
     }
   }
-  p {
-    font-size: 16px;
-    font-family: ${variables.font.text};
-    color: ${variables.colors.grey_shadow};
+  > div {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 `;

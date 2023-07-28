@@ -1,6 +1,7 @@
 const variables = {
     //Colors
     colors: {
+      background: "#e8ebe3a3",
       white: "#F8F9FA",
       grey: "#E9ECEF",
       accent:"#FD5319",

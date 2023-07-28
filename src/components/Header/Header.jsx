@@ -1,20 +1,20 @@
-import { Link, useLocation,useHref } from "react-router-dom";
+import { Link, useLocation, useHref } from "react-router-dom";
+import * as S from "./styles";
+import Bag from "../Icons/Bag/Bag";
 
 const Header = () => {
   const location = useLocation();
   const href = useHref();
 
-  console.log("location :>> ", location);
-  console.log('useHref :>> ', href);
-
   return (
-    <header>
-      <nav>
+    <S.Nav>
+      <div>
         <Link to="/">
-          <p>T.T Market</p>
+          <p>TT </p>
         </Link>
-      </nav>
-    </header>
+        <Bag />
+      </div>
+    </S.Nav>
   );
 };
 
