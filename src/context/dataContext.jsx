@@ -1,52 +1,58 @@
-import { createContext, useState, useEffect } from "react";
+import { useContext, useReducer } from "preact/hooks";
+import { createContext, useEffect } from "react";
 
-const ExpiringDataContext = createContext();
+const DataContext = createContext([]);
+const DataDispatchContext = createContext(null);
+const expirationTime = 1000 * 60 * 60;
 
-const ExpiringDataProvider = ({ children }) => {
-  const expirationTime = 3600000;
+export const useData = () => useContext(DataContext);
+export const useDataDispatch = () => useContext(DataDispatchContext);
 
-  const fetchData = () => {
-    return fetch("https://itx-frontend-test.onrender.com/api/product")
-      .then(async (res) => await res.json())
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
 
-  const [data, setData] = useState({ data: [], expirationTime: 0 });
+const fetchData = () => {
+  return fetch("https://itx-frontend-test.onrender.com/api/product")
+    .then(async (res) => await res.json())
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
-  const saveDataWithExpiration = (data) => {
-    setData({ data, expirationTime: Date.now() + expirationTime });
-  };
 
-  const getValidData = async () => {
-    const expiringData = data;
-    if (expiringData.data.length) {
-      const { data, expirationTime } = expiringData;
-      if (Date.now() < expirationTime) {
-        setData({ data, expirationTime });
-      } else {
-        const newData = fetchData();
-        saveDataWithExpiration(newData);
-      }
-    } else {
-      const newData = await fetchData();
-      saveDataWithExpiration(newData);
-    }
-  };
+export const DataProvider = ({ children }) => {
+  const [data, dispatch] = useReducer(dataReducer, []);
 
-  useEffect(() => {
-    getValidData();
+  useEffect(async () => {
+    const newData = await fetchData();
+    dispatch({ type: "FETCH_DATA", payload: newData });
+    localStorage.setItem(
+      "expiringData",
+      JSON.stringify({ expirationTime: Date.now() + expirationTime })
+    );
   }, []);
 
   return (
-    <ExpiringDataContext.Provider value={data}>
+    <DataContext.Provider value={{data}}>
+      <DataDispatchContext.Provider value={dispatch}>
       {children}
-    </ExpiringDataContext.Provider>
+      </DataDispatchContext.Provider>
+    </DataContext.Provider>
   );
 };
 
-export { ExpiringDataContext, ExpiringDataProvider };
+const dataReducer = (data, { type, payload }) => {
+  switch (type) {
+    case "FETCH_DATA":
+      return [...payload];
+    case "UPDATE_DATA":
+      localStorage.setItem(
+        "expiringData",
+        JSON.stringify({ expirationTime: Date.now() + expirationTime })
+      );
+      return [...payload]
+    default:
+      return data;
+  }
+};

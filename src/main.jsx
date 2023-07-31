@@ -28,8 +28,11 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("app")).render(
+const domNode = document.getElementById("app");
+const root = ReactDOM.createRoot(domNode);
+
+root.render(
   <RootContext>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </RootContext>
 );

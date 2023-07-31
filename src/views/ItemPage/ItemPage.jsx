@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import * as S from "./styles";
 import { useCartDispatch } from "../../context/cartContext";
 import Loading from "../../components/Loading/Loading";
+import Description from "../../components/Description/Description";
 
 const ItemPage = () => {
   const { productId } = useParams();
@@ -25,23 +26,6 @@ const ItemPage = () => {
           );
     setSelectedDetails({ ...selectedDetails, [target.name]: value });
   };
-
-  useEffect(() => {
-    fetch(`https://itx-frontend-test.onrender.com/api/product/${productId}`)
-      .then(async (res) => await res.json())
-      .then((res) => {
-        setProduct(res);
-        setSelectedDetails({
-          color: res.options.colors[0],
-          storage: res.options.storages[0],
-        });
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,6 +50,23 @@ const ItemPage = () => {
       });
   };
 
+  useEffect(() => {
+    fetch(`https://itx-frontend-test.onrender.com/api/product/${productId}`)
+      .then(async (res) => await res.json())
+      .then((res) => {
+        setProduct(res);
+        setSelectedDetails({
+          color: res.options.colors[0],
+          storage: res.options.storages[0],
+        });
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
   if (loading) return <Loading />;
   return (
     <S.ItemPage>
@@ -75,53 +76,7 @@ const ItemPage = () => {
         </S.ImageContainer>
       </section>
       <section>
-        <S.DetailsContainer>
-          <div>
-            <div>
-              <h1>{product.model}</h1>
-              <h2>{product.brand}</h2>
-            </div>
-            <p>{product.price}€</p>
-          </div>
-          <h3>Detalles:</h3>
-          <ul>
-            <li>
-              <h4>
-                <span>CPU:</span> {product.cpu}
-              </h4>
-            </li>
-            <li>
-              <h4>
-                <span>RAM:</span> {product.ram}
-              </h4>
-            </li>
-            <li>
-              <h4>
-                <span>Sistema operativo:</span> {product.os}
-              </h4>
-            </li>
-            <li>
-              <h4>
-                <span>Resolución de pantalla:</span> {product.displaySize}
-              </h4>
-            </li>
-            <li>
-              <h4>
-                <span>Batería:</span> {product.battery}
-              </h4>
-            </li>
-            <li>
-              <h4>
-                <span>Dimensiones:</span> {product.dimentions}
-              </h4>
-            </li>
-            <li>
-              <h4>
-                <span>Peso:</span> {product.weight} g
-              </h4>
-            </li>
-          </ul>
-        </S.DetailsContainer>
+        <Description product={product} />
         <S.ActionContainer>
           <h2>Configura tu teléfono {product.model}:</h2>
           <form onSubmit={handleSubmit}>

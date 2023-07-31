@@ -7,12 +7,10 @@ const fadeIn = keyframes`
 `;
 
 export const List = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 50px;
-  list-style: none;
-  padding: 50px;
-  max-width: 1440px;
-  margin: 0 auto;
   animation: ${fadeIn} 2.5s;
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  list-style: none;
+  width: 100%;
 `;
