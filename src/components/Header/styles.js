@@ -2,24 +2,24 @@ import styled from "styled-components";
 import variables from "../../styles/_variables";
 
 export const Nav = styled.nav`
+  margin-bottom: -80px;
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 5;
-  margin-bottom: -80px;
   > div {
-    padding: 10px 12px;
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    max-width: 1024px;
     margin: 0 auto;
+    max-width: 1024px;
+    padding: 10px 12px;
     > a,
     > div:first-child,
     > div:last-child {
       background-color: ${variables.colors.white};
-      padding: 15px;
       border-radius: 50%;
+      padding: 15px;
     }
     a {
       text-decoration: none;

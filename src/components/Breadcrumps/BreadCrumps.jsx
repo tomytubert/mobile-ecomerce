@@ -1,16 +1,13 @@
 import { Link, useHref, useParams } from "react-router-dom";
 import * as S from "./styles";
-import { useContext } from "preact/hooks";
-import { ExpiringDataContext } from "../../context/dataContext";
+import { useData } from "../../context/dataContext";
 
 const BreadCrumps = () => {
   const href = useHref();
   const params = useParams();
-  const products = useContext(ExpiringDataContext);
+  const { data } = useData();
 
-  const product = products.data.find(
-    (product) => product.id === params.productId
-  );
+  const product = data.find((product) => product.id === params.productId);
 
   if (product)
     return (

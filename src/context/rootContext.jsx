@@ -1,12 +1,12 @@
 import { CartProvider } from "./cartContext";
-import { ExpiringDataProvider } from "./dataContext";
+import { DataProvider } from "./dataContext";
 
 export default function RootContext({ children }) {
   return (
     <>
-      <ExpiringDataProvider>
+      <DataProvider>
         <CartProvider>{children}</CartProvider>
-      </ExpiringDataProvider>
+      </DataProvider>
     </>
   );
 }

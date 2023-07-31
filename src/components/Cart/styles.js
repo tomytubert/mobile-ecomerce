@@ -4,18 +4,18 @@ import variables from "../../styles/_variables";
 export const CartContainer = styled.div`
   position: relative;
   span {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: ${variables.colors.accent};
-    font-size: 10px;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    background: ${variables.colors.accent};
     border-radius: 100%;
-    font-family: ${variables.font.title};
+    bottom: 10px;
     color: white;
+    display: flex;
+    font-family: ${variables.font.title};
+    font-size: 10px;
+    height: 15px;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+    width: 15px;
   }
 `;

@@ -139,3 +139,80 @@ ellos, se require definir la siguiente funcionalidad:
 • Se almacenará la información cada vez que se solicite al servicio del API
 • Se guardará dicha información, y tendrá una expiración de 1 hora, una vez excedido dicho tiempo, deberá revalidarse la información
 • Se podrá utilizar cualquier metodo de storage para almacenar dicha información, ya sea del navegador o en memoria, pero siempre en cliente.
+
+----------------------------------------
+
+## COMPONENTS
+Todos los componentes tienen un archivo styles.js donde creo los componentes estilados con style-components.
+
+* Breadcumps
+* Cart
+* Description
+* Header 
+* Icons
+ - Bag
+* Item
+* List
+* Loading
+* Search
+
+## Breadcrumps 
+Este componente solo se renderiza cuando accedemos a la vista detallada del producto. Ahí, compara el poductId del params con la id del Array de productos que obtiene de useData() que viene de un contexto. De esta forma, encuentra el id del producto y renderiza el modelo.
+
+## Cart
+Renderiza la cantidad de productos guardados en el contexto de Cart en Header.
+
+## Description
+Renderiza la información detallada de cada producto en ItemPage.
+
+## Header
+Renderiza el logo de la app más Breadcrumps y Cart.
+
+## Icons/Bag
+Es un icono svg pasado a componente que se renderiza en Cart.
+
+## Item
+Renderiza la información de los productos del array de datos. Este tiene un link a la página detallada.
+
+## List
+Renderiza una lista de Item recibida por props de app.jsx.
+
+## Loading
+Spinner para mostrar mientras se realizan los fetch y no hay datos.
+
+## Search
+Es un input type text que recibe dos props. El handlechange y el value del componente padre que es app.jsx. 
+
+## VIEWS
+
+* Home
+* ItemPage
+
+## Home / app.jsx
+
+Primero hace un fetch de los datos si el expirationTime guardado en el localStorage es mayor al Date.now(), además de traerse los
+datos del contexto useData().
+
+También tiene un state filterBy para controlar el valor del input Search. La constante dataFiltered guarda los productos filtrados y se los envia a List.
+
+## ItemPage
+
+Primero hace un fetch del producto con el id de params y guardo los datos en el estado product y la primera opción del color y del almacenamiento en selectedDetails.
+
+Hay un handlechange que actualiza el estado selectedDetails con los select de almacenamiento y color. Lo que hace es buscar el objeto de la opción dentro del estado de producto comparando los code.
+
+Por útlimo, cuando el usuario lo añade al carrito, se ejecuta handleSubmit. Este primero hace un fetch POST de los datos escogidos. Al resolverse esa promesa lanza un dispatch para actualizar los datos del useCart.
+
+## CONTEXT
+En los contextos hay creados dos en cada uno. Uno me guarda los datos y otro el dispatch para actualizar esos datos.
+
+* cartContext
+* dataContext
+* rootContext
+
+## cartContext
+Como acciones está ADD_PRODUCT que añade el payload a cart.
+
+## dataContext
+Al crearse hace un fetch para obtener el array de datos a la vez que guarda en el localStorage el tiempo de expirationTime.
+Tenemos dos acciones, FETCH_DATA que se lanza en el useEffect de este contexto, y UPDATE_DATA que actualiza data con el payload y el expirationTime.

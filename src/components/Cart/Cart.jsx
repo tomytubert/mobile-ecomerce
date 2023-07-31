@@ -4,7 +4,6 @@ import * as S from "./styles";
 
 const Cart = () => {
   const { cart } = useCart();
-  console.log("cart :>> ", cart);
 
   return (
     <S.CartContainer>

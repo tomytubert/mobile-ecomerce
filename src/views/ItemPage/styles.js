@@ -8,27 +8,26 @@ const fadeIn = keyframes`
 `;
 
 export const ItemPage = styled.main`
-  max-width: 1440px;
-  margin: 0 auto;
+  animation: ${fadeIn} 2.5s;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  max-width: 1440px;
   min-height: 100vh;
-  animation: ${fadeIn} 2.5s;
   section:nth-child(2) {
-    padding: 20px 50px;
     background-color: ${variables.colors.white};
     border-radius: 50px 50px 0 0;
-    margin-top: -50px;
+    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     gap: 20px;
-    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
+    margin-top: -50px;
+    padding: 20px 50px;
   }
   @media only screen and (min-width: 450px) and (max-width: 1024px) {
     section:nth-child(2) {
       flex-direction: row;
       gap: 10%;
-      box-shadow: none;
     }
   }
   @media only screen and (min-width: 1025px) {
@@ -39,6 +38,7 @@ export const ItemPage = styled.main`
     }
     section:nth-child(2) {
       background: transparent;
+      box-shadow: none;
       margin-top: 0;
     }
   }
@@ -48,9 +48,9 @@ export const ImageContainer = styled.div`
   background-color: white;
   padding: 100px 50px 75px 50px;
   img {
-    width: 100%;
     max-height: 300px;
     object-fit: contain;
+    width: 100%;
   }
   @media only screen and (min-width: 1025px) {
     border-radius: 50px;
@@ -60,12 +60,12 @@ export const ImageContainer = styled.div`
 
 export const DetailsContainer = styled.div`
   > div {
-    display: flex;
     align-items: flex-start;
+    display: flex;
     justify-content: space-between;
     p {
-      font-family: ${variables.font.text};
       color: ${variables.colors.accent};
+      font-family: ${variables.font.text};
       font-size: 30px;
       font-weight: bold;
     }
@@ -77,8 +77,8 @@ export const DetailsContainer = styled.div`
     font-family: ${variables.font.text};
   }
   h1 {
-    font-family: ${variables.font.title};
     color: ${variables.colors.black};
+    font-family: ${variables.font.title};
     font-size: 35px;
     font-weight: bold;
   }
@@ -123,32 +123,32 @@ export const ActionContainer = styled.div`
     margin-top: 10px;
   }
   select {
-    border: none;
-    font-family: ${variables.font.text};
-    color: ${variables.colors.white};
-    padding: 8px 14px;
-    font-size: 13px;
     background-color: ${variables.colors.accent};
     border-radius: 5px;
-    font-weight: bold;
-    width: fit-content;
+    border: none;
+    color: ${variables.colors.white};
     cursor: pointer;
+    font-family: ${variables.font.text};
+    font-size: 13px;
+    font-weight: bold;
+    padding: 8px 14px;
+    width: fit-content;
   }
   button {
-    border: none;
-    font-family: ${variables.font.text};
-    font-size: 16px;
-    color: ${variables.colors.white};
-    padding: 10px 20px;
     background-color: ${variables.colors.accent};
     border-radius: 5px;
-    font-weight: bold;
+    border: none;
+    color: ${variables.colors.white};
     cursor: pointer;
+    font-family: ${variables.font.text};
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
   }
   label {
+    color: ${variables.colors.black};
     font-family: ${variables.font.title};
     font-size: 16px;
-    color: ${variables.colors.black};
   }
   form {
     display: flex;
